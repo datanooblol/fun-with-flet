@@ -1,0 +1,82 @@
+import flet as ft
+
+"""
+Color Design Tokens
+Centralized color system for consistent theming
+"""
+
+# Primary Colors
+PRIMARY_50 = "#EBF8FF"
+PRIMARY_100 = "#BEE3F8"
+PRIMARY_500 = "#3182CE"  # Main primary
+PRIMARY_600 = "#2C5282"
+PRIMARY_900 = "#1A365D"
+
+# Secondary Colors
+SECONDARY_50 = "#F7FAFC"
+SECONDARY_100 = "#EDF2F7"
+SECONDARY_500 = "#718096"  # Main secondary
+SECONDARY_600 = "#4A5568"
+SECONDARY_900 = "#1A202C"
+
+# Semantic Colors
+SUCCESS_50 = "#F0FFF4"
+SUCCESS_500 = "#38A169"  # Main success
+SUCCESS_600 = "#2F855A"
+
+WARNING_50 = "#FFFBEB"
+WARNING_500 = "#ED8936"  # Main warning
+WARNING_600 = "#DD6B20"
+
+DANGER_50 = "#FED7D7"
+DANGER_500 = "#E53E3E"  # Main danger
+DANGER_600 = "#C53030"
+
+# Neutral Colors
+WHITE = "#FFFFFF"
+BLACK = "#000000"
+GRAY_50 = "#F9FAFB"
+GRAY_100 = "#F3F4F6"
+GRAY_200 = "#E5E7EB"
+GRAY_300 = "#D1D5DB"
+GRAY_400 = "#9CA3AF"
+GRAY_500 = "#6B7280"
+GRAY_600 = "#4B5563"
+GRAY_700 = "#374151"
+GRAY_800 = "#1F2937"
+GRAY_900 = "#111827"
+
+# Flet Color Mapping
+class Colors:
+    # Primary
+    PRIMARY_LIGHT = PRIMARY_50
+    PRIMARY = PRIMARY_500
+    PRIMARY_DARK = PRIMARY_900
+    
+    # Secondary  
+    SECONDARY_LIGHT = SECONDARY_50
+    SECONDARY = SECONDARY_500
+    SECONDARY_DARK = SECONDARY_900
+    
+    # Semantic
+    SUCCESS = SUCCESS_500
+    WARNING = WARNING_500
+    DANGER = DANGER_500
+    
+    # Neutral
+    WHITE = WHITE
+    BLACK = BLACK
+    GRAY_LIGHT = GRAY_100
+    GRAY = GRAY_500
+    GRAY_DARK = GRAY_800
+    
+    # Background
+    BG_PRIMARY = WHITE
+    BG_SECONDARY = GRAY_50
+    BG_DARK = GRAY_900
+    
+    # Text
+    TEXT_PRIMARY = GRAY_900
+    TEXT_SECONDARY = GRAY_600
+    TEXT_MUTED = GRAY_400
+    TEXT_INVERSE = WHITE
