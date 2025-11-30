@@ -1,62 +1,50 @@
 import flet as ft
+from components.message_bubble import MessageBubble
+from components.chat_input import ChatInput
+from components.chat_container import ChatContainer
+from components.chat_messages_list import ChatMessagesList
 
 
 def main(page: ft.Page):
     page.title = "Echo Chat"
     page.bgcolor = ft.Colors.WHITE
     
-    chat_list = ft.ListView(expand=True, spacing=10, padding=20)
-    message_input = ft.TextField(
-        hint_text="Type a message...",
-        expand=True,
-        on_submit=lambda e: send_message()
-    )
+    # Initialize components
+    chat_list = ChatMessagesList()
     
     def send_message():
-        if message_input.value.strip():
-            # Add user message
+        message_input = None
+        # Find the TextField in the input component
+        for control in page.controls[0].content.content.controls[1].controls:
+            if isinstance(control, ft.TextField):
+                message_input = control
+                break
+        
+        if message_input and message_input.value.strip():
+            # Add user message using component
             chat_list.controls.append(
-                ft.Container(
-                    ft.Text(f"You: {message_input.value}", color=ft.Colors.WHITE),
-                    bgcolor=ft.Colors.BLUE,
-                    padding=10,
-                    border_radius=10,
-                    alignment=ft.alignment.center_right
-                )
+                MessageBubble(message_input.value, "You", True)
             )
             
-            # Add echo message
+            # Add echo message using component
             chat_list.controls.append(
-                ft.Container(
-                    ft.Text(f"Echo: {message_input.value}", color=ft.Colors.WHITE),
-                    bgcolor=ft.Colors.GREY,
-                    padding=10,
-                    border_radius=10,
-                    alignment=ft.alignment.center_left
-                )
+                MessageBubble(message_input.value, "Echo", False)
             )
             
             message_input.value = ""
             page.update()
     
+    # Build UI using components
+    chat_input = ChatInput(
+        on_send=lambda e: send_message(),
+        on_submit=lambda e: send_message()
+    )
+    
     page.add(
-        ft.Container(
-            ft.Container(
-                ft.Column([
-                    chat_list,
-                    ft.Row([
-                        message_input,
-                        ft.IconButton(
-                            icon=ft.Icons.SEND,
-                            on_click=lambda e: send_message()
-                        )
-                    ])
-                ]),
-                width=700,
-            ),
-            alignment=ft.alignment.center,
-            expand=True
-        )
+        ChatContainer([
+            chat_list,
+            chat_input
+        ])
     )
 
 
